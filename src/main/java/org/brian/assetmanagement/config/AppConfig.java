@@ -40,9 +40,8 @@ public class AppConfig {
 	}
 
 	/**
-	 * deal with FXML loads only after services, repositories, controllers and beans
-	 * are loaded during Spring Boot startup. Otherwise one or more Spring
-	 * components will remain missing.
+	 * deal with FXML loads only after services, repositories, controllers, and beans
+	 * are loaded during Spring Boot startup. 
 	 */
 	@Bean
 	@Lazy(value = true)

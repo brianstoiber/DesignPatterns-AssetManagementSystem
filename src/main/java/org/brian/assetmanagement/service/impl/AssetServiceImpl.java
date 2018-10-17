@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 /**
  * service implementation for Asset entity. corresponding repository is
  * autowired here so that database is queried according to what is called from
- * controller.
+ * the controller
  */
 @Service("assetService")
 public class AssetServiceImpl implements AssetService {

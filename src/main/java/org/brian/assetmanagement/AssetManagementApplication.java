@@ -25,6 +25,7 @@ public class AssetManagementApplication extends Application {
 	public void start(Stage stage) throws Exception {
 		sceneManager = springContext.getBean(FXMLSceneManager.class, stage);
 		sceneManager.switchScene(ViewResolver.ASSETS);
+//        sceneManager.switchScene(ViewResolver.EMPLOYEES);
 	}
 
 	@Override
@@ -37,7 +38,6 @@ public class AssetManagementApplication extends Application {
 		return builder.run(savedArgs);
 	}
 
-	// @param args the command line arguments
 	public static void main(String[] args) {
 		savedArgs = args;
 		Application.launch(AssetManagementApplication.class, args);

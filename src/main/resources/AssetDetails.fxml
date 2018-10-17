@@ -17,7 +17,7 @@
          <children>
             <VBox>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="134.0" prefWidth="324.0" text="ASM - Asset Management System" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="134.0" prefWidth="324.0" text="AMS - Asset Management System" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="10.0" />
                      </opaqueInsets>

@@ -13,13 +13,24 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import static org.slf4j.LoggerFactory.getLogger;
+
+import java.util.Objects;
+
+import org.slf4j.Logger;
+
+import org.brian.assetmanagement.view.ViewResolver;
+
+import javafx.application.Platform;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
- * manages switching scenes on the primary stage. with the help of
- * JavaFXLoaderUtil, this loads the node hierarchy. problem with
+ * manages switching scenes on the primary stage. With the help of
+ * JavaFXLoaderUtil, this loads the node hierarchy. Problem with
  * javafx.fxml.FXMLLoader is solved using the JavaFXLoaderUtil.load function.
  */
-
 public class FXMLSceneManager {
 
 	private static final Logger LOG = getLogger(FXMLSceneManager.class);
