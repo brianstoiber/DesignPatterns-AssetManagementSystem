@@ -9,8 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 /**
- * Loads the fxml files on startup and allows JavaFX files to be used in Spring
- * Boot app. The static load function available from javafx.fxml.FXMLLoader
+ * loads the fxml files on startup and allows JavaFX files to be used in Spring
+ * Boot app. the static load function available from javafx.fxml.FXMLLoader
  * interferes with Spring Boot startup because components and services may not
  * be loaded properly
  */

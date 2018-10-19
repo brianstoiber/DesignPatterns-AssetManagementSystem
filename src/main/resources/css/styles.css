@@ -1,16 +1,21 @@
-.parent {
-	-fx-background-color: #000099
+.parent{
+    -fx-background-color: #000099
+}
+.child{
+    -fx-background-color: #ccccff
 }
 
-.child {
-	-fx-background-color: #ccccff
+/* CSS for alligning table cells and columns properly. */
+.table-column{
+    -fx-alignment: CENTER-RIGHT;
 }
 
-/* CSS for aligning table cells and columns properly. */
-.table-column {
-	-fx-alignment: CENTER-RIGHT;
+.table-cell{
+    -fx-alignment: CENTER;
 }
 
-.table-cell {
-	-fx-alignment: CENTER;
-}
+  .mylabel:hover {
+    -fx-text-fill: #01c69f;
+    -fx-font-style: italic;
+    -fx-cursor: hand;
+  }

@@ -34,6 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-    public List<Employee> getAll() {
-        return empRepo.findAll();
-    }
+	public List<Employee> getAll() {
+		return empRepo.findAll();
+	}
+}

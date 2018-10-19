@@ -27,8 +27,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * manages switching scenes on the primary stage. With the help of
- * JavaFXLoaderUtil, this loads the node hierarchy. Problem with
+ * manages switching scenes on the primary stage. with the help of
+ * JavaFXLoaderUtil, this loads the node hierarchy. problem with
  * javafx.fxml.FXMLLoader is solved using the JavaFXLoaderUtil.load function.
  */
 public class FXMLSceneManager {
