@@ -7,7 +7,7 @@ Maven 3.x
 JavaFX Scene Builder (From Gluon or Oracle)  
 NetBeans Java EE IDE 8.0 or Eclipse Java EE IDE  
 
-Patterns implemented: 
+Patterns implemented:  
 -MVC  
 -Facade  
 -Template  
