@@ -3,7 +3,7 @@ package org.brian.assetmanagement.view;
 import java.util.ResourceBundle;
 
 /**
- * ViewResolver enum helps in resolving the right fxml file and helps in
+ * ViewResolver enum helps in resolving the right fxml file and helps with
  * switching scenes. this is used in FXMLSceneManager.switchScene().
  */
 public enum ViewResolver {

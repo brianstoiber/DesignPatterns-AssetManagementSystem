@@ -1,6 +1,5 @@
 package org.brian.assetmanagement.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -8,23 +7,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import org.brian.assetmanagement.bean.Employee;
 import org.brian.assetmanagement.config.FXMLSceneManager;
 import org.brian.assetmanagement.service.EmployeeService;
-import org.brian.assetmanagement.view.ViewResolver;
+import org.slf4j.Logger;
+import static org.slf4j.LoggerFactory.getLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 @Controller
-//public class EmployeeController implements Initializable {
 public class EmployeeController extends AbstractTemplateController {
+	private static final Logger LOG = getLogger(EmployeeController.class);
 
 	@Autowired
 	private EmployeeService employeeService;
@@ -47,10 +45,15 @@ public class EmployeeController extends AbstractTemplateController {
 	@FXML
 	private TableColumn<Employee, String> colStartDate;
 
+	@Autowired
+	@Lazy
+	private FXMLSceneManager sceneManager;
+
 	private ObservableList<Employee> empList = FXCollections.observableArrayList();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		LOG.info("Inside EmployeeController::initialize");
 		employeeTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		setTableColumnProperties();
 		populateEmployees();
@@ -80,16 +83,16 @@ public class EmployeeController extends AbstractTemplateController {
 		Employee emp = new Employee();
 		emp.setEmployeeID(1L);
 		emp.setName("Brian Stoiber");
-		emp.setPhoneNumber("555-555-5555");
-		emp.setEmail("brian@email.com");
-		emp.setStartDate("1/1/2000");
+		emp.setPhoneNumber("829-129-3048");
+		emp.setEmail("brianstoiber@email.com");
+		emp.setStartDate("9/15/2001");
 		employeeService.save(emp);
 		emp = new Employee();
 		emp.setEmployeeID(2L);
 		emp.setName("Dan Louis");
-		emp.setPhoneNumber("555-555-5554");
-		emp.setEmail("dan@email.com");
-		emp.setStartDate("1/1/2000");
+		emp.setPhoneNumber("321-436-7920");
+		emp.setEmail("danlouis@email.com");
+		emp.setStartDate("1/1/1994");
 		employeeService.save(emp);
 
 	}

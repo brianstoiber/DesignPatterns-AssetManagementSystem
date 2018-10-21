@@ -14,23 +14,22 @@ import org.springframework.stereotype.Component;
  * interferes with Spring Boot startup because components and services may not
  * be loaded properly
  */
-
 @Component
 public class JavaFXLoaderUtil {
-    private final ResourceBundle resourceBundle;
-    private final ApplicationContext context;
+	private final ResourceBundle resourceBundle;
+	private final ApplicationContext context;
 
-    @Autowired
-    public JavaFXLoaderUtil(ApplicationContext context, ResourceBundle resourceBundle) {
-        this.resourceBundle = resourceBundle;
-        this.context = context;
-    }
+	@Autowired
+	public JavaFXLoaderUtil(ApplicationContext context, ResourceBundle resourceBundle) {
+		this.resourceBundle = resourceBundle;
+		this.context = context;
+	}
 
-    public Parent load(String fxmlPath) throws IOException {      
-        FXMLLoader loader = new FXMLLoader();
-        loader.setControllerFactory(context::getBean);
-        loader.setResources(resourceBundle);
-        loader.setLocation(getClass().getResource(fxmlPath));
-        return loader.load();
-    }
+	public Parent load(String fxmlPath) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setControllerFactory(context::getBean);
+		loader.setResources(resourceBundle);
+		loader.setLocation(getClass().getResource(fxmlPath));
+		return loader.load();
+	}
 }

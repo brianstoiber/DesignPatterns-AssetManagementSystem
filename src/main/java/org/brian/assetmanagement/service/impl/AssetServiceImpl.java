@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * service implementation for Asset entity. corresponding repository is
+ * service implementation for asset entity. corresponding repository is
  * autowired here so that database is queried according to what is called from
  * the controller
  */

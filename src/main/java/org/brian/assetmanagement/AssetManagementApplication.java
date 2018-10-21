@@ -10,42 +10,39 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class AssetManagementApplication extends Application {
-    
-    protected ConfigurableApplicationContext springContext;
-    protected FXMLSceneManager sceneManager;
-    
-    private static String[] savedArgs;
-    
-    
-    @Override
-    public void init() throws Exception {
-        springContext = springBootApplicationContext();
-    }
-    
-    @Override
-    public void start(Stage stage) throws Exception {
-        sceneManager = springContext.getBean(FXMLSceneManager.class, stage);
-        sceneManager.switchScene(ViewResolver.DASHBOARD);
-        // sceneManager.switchScene(ViewResolver.ASSETS);
-        // sceneManager.switchScene(ViewResolver.EMPLOYEES);
-    }
-    
-    @Override
-    public void stop() throws Exception{
-        springContext.close();
-    }
-    
-    private ConfigurableApplicationContext springBootApplicationContext() {
-        SpringApplicationBuilder builder = new SpringApplicationBuilder(AssetManagementApplication.class);
-        return builder.run(savedArgs);
-    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        savedArgs = args;
-        Application.launch(AssetManagementApplication.class, args);
-    }
-    
+	protected ConfigurableApplicationContext springContext;
+	protected FXMLSceneManager sceneManager;
+
+	private static String[] savedArgs;
+
+	@Override
+	public void init() throws Exception {
+		springContext = springBootApplicationContext();
+	}
+
+	@Override
+	public void start(Stage stage) throws Exception {
+		sceneManager = springContext.getBean(FXMLSceneManager.class, stage);
+		sceneManager.switchScene(ViewResolver.DASHBOARD);
+	}
+
+	@Override
+	public void stop() throws Exception {
+		springContext.close();
+	}
+
+	private ConfigurableApplicationContext springBootApplicationContext() {
+		SpringApplicationBuilder builder = new SpringApplicationBuilder(AssetManagementApplication.class);
+		return builder.run(savedArgs);
+	}
+
+	/**
+	 * @param args the command line arguments
+	 */
+	public static void main(String[] args) {
+		savedArgs = args;
+		Application.launch(AssetManagementApplication.class, args);
+	}
+
 }
