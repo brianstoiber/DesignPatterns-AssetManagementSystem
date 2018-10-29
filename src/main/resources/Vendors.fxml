@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -16,7 +17,7 @@
          <children>
             <VBox>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="134.0" prefWidth="324.0" text="AMS - Asset Management System" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="134.0" prefWidth="324.0" text="ASM - Asset Management System" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="10.0" />
                      </opaqueInsets>
@@ -69,15 +70,20 @@
       <HBox layoutX="-5.0" layoutY="170.0" prefHeight="15.0" prefWidth="911.0" styleClass="parent" stylesheets="@css/styles.css" />
       <HBox layoutX="-5.0" layoutY="185.0" prefHeight="481.0" prefWidth="911.0" styleClass="child" stylesheets="@css/styles.css">
          <children>
-            <TableView fx:id="vendorTable" prefHeight="481.0" prefWidth="920.0">
-              <columns>
-                <TableColumn fx:id="colVendorId" prefWidth="152.0" text="Vendor ID" />
-                <TableColumn fx:id="colName" prefWidth="151.0" text="Name" />
-                  <TableColumn fx:id="colPhoneNum" prefWidth="199.0" text="Phone Number" />
-                  <TableColumn fx:id="colEmail" prefWidth="243.0" text="Email" />
-                  <TableColumn fx:id="colVendorRep" prefWidth="165.0" text="Vendor Rep" />
-              </columns>
-            </TableView>
+            <VBox alignment="CENTER_RIGHT">
+               <children>
+                  <Button fx:id="deleteBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#delete" text="Delete" />
+                  <TableView fx:id="vendorTable" prefHeight="481.0" prefWidth="920.0">
+                    <columns>
+                      <TableColumn fx:id="colVendorId" prefWidth="152.0" text="Vendor ID" />
+                      <TableColumn fx:id="colName" onEditCommit="#handleEditCommitEvent" prefWidth="151.0" text="Name" />
+                        <TableColumn fx:id="colPhoneNum" onEditCommit="#handleEditCommitEvent" prefWidth="199.0" text="Phone Number" />
+                        <TableColumn fx:id="colEmail" onEditCommit="#handleEditCommitEvent" prefWidth="243.0" text="Email" />
+                        <TableColumn fx:id="colVendorRep" onEditCommit="#handleEditCommitEvent" prefWidth="165.0" text="Vendor Rep" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </children>

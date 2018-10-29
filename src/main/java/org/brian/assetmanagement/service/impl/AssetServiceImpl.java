@@ -8,6 +8,13 @@ import org.slf4j.Logger;
 import static org.slf4j.LoggerFactory.getLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.brian.assetmanagement.bean.Asset;
+import org.brian.assetmanagement.repository.AssetRepository;
+import org.brian.assetmanagement.service.AssetService;
+import org.slf4j.Logger;
+import static org.slf4j.LoggerFactory.getLogger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * service implementation for asset entity. corresponding repository is
@@ -49,6 +56,11 @@ public class AssetServiceImpl implements AssetService {
 	public List<Asset> getAll() {
 		LOG.debug("AssetServiceImpl.getAll() called");
 		return assetRepository.findAll();
+	}
+
+	@Override
+	public void deleteInBatch(List<Asset> selectedAssets) {
+		assetRepository.deleteInBatch(selectedAssets);
 	}
 
 }

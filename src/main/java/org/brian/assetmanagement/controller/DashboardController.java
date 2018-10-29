@@ -14,55 +14,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+
 @Controller
 public class DashboardController extends AbstractTemplateController {
 
-	private static final Logger LOG = getLogger(DashboardController.class);
+    private static final Logger LOG = getLogger(DashboardController.class);
 
-	@Autowired
-	@Lazy
-	private FXMLSceneManager sceneManager;
+    @Autowired
+    @Lazy
+    private FXMLSceneManager sceneManager;
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		LOG.info("Inside DashboardController::initialize");
-	}
 
-	@FXML
-	public void handleHyperLinkForward(ActionEvent event) throws IOException {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        LOG.info("Inside DashboardController::initialize");
+    }
+
+    @FXML
+    public void handleHyperLinkForward(ActionEvent event) throws IOException {
 		/**
 		 * facade pattern implemented here. dashboard is the facade or interface which
 		 * provides interraction with multiple controllers. once the scene is switched,
 		 * the corresponding controller takes over the control from dashboard.
 		 */
-		Hyperlink currentLink = (Hyperlink) event.getSource();
-		LOG.info("inside handleHyperLinkForward. Event trigerred from: " + currentLink.getText());
-		delegateToFacade(currentLink.getText());
-	}
+    	Hyperlink currentLink = (Hyperlink) event.getSource();
+        LOG.info("inside handleHyperLinkForward. Event trigerred from: " + currentLink.getText());
+        delegateToFacade(currentLink.getText());
+    }
 
-	private void delegateToFacade(String sourceName) {
-		switch (sourceName) {
-		case "View Assets":
-			sceneManager.switchScene(ViewResolver.ASSETS);
-			break;
-		case "Add New Asset":
-			// will add corresponding file once completed.
-			sceneManager.switchScene(ViewResolver.DASHBOARD);
-			break;
-		case "View Employees":
-			sceneManager.switchScene(ViewResolver.EMPLOYEES);
-			break;
-		case "Add New Employee":
-			// will add corresponding file once completed.
-			sceneManager.switchScene(ViewResolver.DASHBOARD);
-			break;
-		case "View Vendors":
-			sceneManager.switchScene(ViewResolver.VENDORS);
-			break;
-		case "Add New Vendor":
-			// will add corresponding file once completed.
-			sceneManager.switchScene(ViewResolver.DASHBOARD);
-			break;
-		}
-	}
+    private void delegateToFacade(String sourceName) {
+        switch (sourceName) {
+            case "View Assets":
+                sceneManager.switchScene(ViewResolver.ASSETS);
+                break;
+            case "Add New Asset":
+                sceneManager.switchScene(ViewResolver.ASSET_DETAILS);
+                break;
+            case "View Employees":
+                sceneManager.switchScene(ViewResolver.EMPLOYEES);
+                break;
+            case "Add New Employee":
+                sceneManager.switchScene(ViewResolver.EMPLOYEE_DETAILS);
+                break;
+            case "View Vendors":
+                sceneManager.switchScene(ViewResolver.VENDORS);
+                break;
+            case "Add New Vendor":
+                sceneManager.switchScene(ViewResolver.VENDOR_DETAILS);
+                break;
+        }
+    }
 }

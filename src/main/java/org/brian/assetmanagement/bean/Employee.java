@@ -1,9 +1,8 @@
 package org.brian.assetmanagement.bean;
 
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,7 +10,6 @@ import javax.persistence.Table;
 @Table(name = "Employee")
 public class Employee {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "employeeid", updatable = false, nullable = false)
 	private long employeeID;
 
@@ -25,7 +23,7 @@ public class Employee {
 	private String email;
 
 	@Column(name = "start_date")
-	private String startDate;
+	private LocalDate startDate;
 
 	public long getEmployeeID() {
 		return employeeID;
@@ -59,11 +57,11 @@ public class Employee {
 		this.email = email;
 	}
 
-	public String getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 

@@ -6,6 +6,11 @@ import org.brian.assetmanagement.repository.EmployeeRepository;
 import org.brian.assetmanagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.brian.assetmanagement.bean.Employee;
+import org.brian.assetmanagement.repository.EmployeeRepository;
+import org.brian.assetmanagement.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service("employeeService")
 public class EmployeeServiceImpl implements EmployeeService {
@@ -37,4 +42,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> getAll() {
 		return empRepo.findAll();
 	}
+
+	@Override
+	public List<String> getEmployeeNamesOnly() {
+		return empRepo.getNameonly();
+	}
+
+	@Override
+	public void deleteInBatch(List<Employee> selectedEmployees) {
+		empRepo.deleteInBatch(selectedEmployees);
+	}
+
 }

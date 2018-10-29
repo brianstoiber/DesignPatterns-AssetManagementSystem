@@ -13,4 +13,6 @@ public interface AssetService {
 	public void delete(Asset asset);
 
 	public List<Asset> getAll();
+
+	public void deleteInBatch(List<Asset> selectedAssets);
 }

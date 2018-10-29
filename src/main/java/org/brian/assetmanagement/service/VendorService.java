@@ -13,4 +13,6 @@ public interface VendorService {
 	public void delete(Vendor employee);
 
 	public List<Vendor> getAll();
+
+	public void deleteInBatch(List<Vendor> selectedVendors);
 }
