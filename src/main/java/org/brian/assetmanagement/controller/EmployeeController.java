@@ -18,8 +18,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import org.brian.assetmanagement.bean.Asset;
 import org.brian.assetmanagement.bean.Employee;
 import org.brian.assetmanagement.config.FXMLSceneManager;
+import org.brian.assetmanagement.service.AssetService;
 import org.brian.assetmanagement.service.EmployeeService;
 import org.brian.assetmanagement.util.AlertFactory;
 import org.slf4j.Logger;
@@ -35,6 +37,9 @@ public class EmployeeController extends AbstractTemplateController {
 
 	@Autowired
 	private EmployeeService employeeService;
+
+	@Autowired
+	private AssetService assetService;
 
 	@FXML
 	private TableView<Employee> employeeTable;
@@ -92,8 +97,10 @@ public class EmployeeController extends AbstractTemplateController {
 				Optional<ButtonType> action = alert.showAndWait();
 
 				if (action.get() == ButtonType.OK) {
+					resetAssignedToInAssets(selectedEmployees);
 					employeeService.deleteInBatch(selectedEmployees);
 					populateEmployees();
+
 				}
 			}
 		}
@@ -139,6 +146,20 @@ public class EmployeeController extends AbstractTemplateController {
 		empList.clear();
 		empList.addAll(employeeService.getAll());
 		employeeTable.setItems(empList);
+	}
+
+	private void resetAssignedToInAssets(List<Employee> selectedEmployees) {
+		LOG.debug("inside resetAssignedToInAssets.....");
+		selectedEmployees.forEach((e) -> {
+			List<Asset> assetList = assetService.getAllAssetsAssignedTo(e.getName());
+			assetList.forEach((a) -> {
+				LOG.debug("Asset with ID " + a.getId() + " assigned To " + a.getAssigned());
+				LOG.debug("Setting it to unassigned..");
+				a.setAssigned("");
+
+			});
+			assetService.save(assetList);
+		});
 	}
 
 }

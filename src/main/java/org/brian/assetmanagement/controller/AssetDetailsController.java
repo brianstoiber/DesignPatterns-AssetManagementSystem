@@ -94,14 +94,14 @@ public class AssetDetailsController extends AbstractTemplateController {
 			LOG.info("Validation successful inside saveAsset method.......");
 
 			if (id.getText() != null && id.getText().equals("")) {
-				// user gave id explicitly. check in the service whether the asset is already
+				// user gave id explicitly . check in the service whether the asset is already
 				// in place and update it. else create new asset.
 				Asset oldAsset = assetService.getOneAsset(Long.parseLong(id.getText()));
 				oldAsset.setType((String) type.getValue());
 				oldAsset.setManufacturer(manufacturer.getText());
 				oldAsset.setModel(model.getText());
 				oldAsset.setSerial(serialNumber.getText());
-				oldAsset.setAssignedTo((String) assignedTo.getValue());
+				oldAsset.setAssigned((String) assignedTo.getValue());
 				oldAsset.setPurchaseDate(purchaseDate.getValue());
 				oldAsset.setWarranty(warranty.getText());
 				oldAsset.setOs(os.getText());
@@ -115,7 +115,7 @@ public class AssetDetailsController extends AbstractTemplateController {
 				asset.setManufacturer(manufacturer.getText());
 				asset.setModel(model.getText());
 				asset.setSerial(serialNumber.getText());
-				asset.setAssignedTo((String) assignedTo.getValue());
+				asset.setAssigned((String) assignedTo.getValue());
 				asset.setPurchaseDate(purchaseDate.getValue());
 				asset.setWarranty(warranty.getText());
 				asset.setOs(os.getText());
@@ -123,7 +123,7 @@ public class AssetDetailsController extends AbstractTemplateController {
 				asset.setRam(ram.getText());
 				assetService.save(asset);
 			}
-			// after saving the asset details, clear all fields in UI
+			// After saving the asset details, clear all fields in UI
 			refreshForm();
 			showCreateAlert();
 		}
@@ -138,7 +138,7 @@ public class AssetDetailsController extends AbstractTemplateController {
 				&& validate("model", model.getText(), "^[\\w-\\s]+$")
 				&& validate("serialNumber", serialNumber.getText(), "^[\\w]+$")
 				// no need to validate values from assignedTo combo box as it is populated from
-				// database and not inputed by user.
+				// database and not inputted by user.
 				&& emptyValidation("purchaseDate", purchaseDate.getEditor().getText().isEmpty())
 				&& validate("warranty", warranty.getText(), "^[\\w\\s]+$")
 				&& validate("os", os.getText(), "^[\\w\\s]+$") && validate("hdSize", hdSize.getText(), "^[\\w\\s]+$")
