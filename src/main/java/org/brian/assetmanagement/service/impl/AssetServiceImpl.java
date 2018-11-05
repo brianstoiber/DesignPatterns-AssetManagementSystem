@@ -22,6 +22,13 @@ import org.slf4j.Logger;
 import static org.slf4j.LoggerFactory.getLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.brian.assetmanagement.bean.Asset;
+import org.brian.assetmanagement.repository.AssetRepository;
+import org.brian.assetmanagement.service.AssetService;
+import org.slf4j.Logger;
+import static org.slf4j.LoggerFactory.getLogger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * service implementation for asset entity. corresponding repository is
@@ -40,6 +47,12 @@ public class AssetServiceImpl implements AssetService{
     public void save(Asset asset){
         LOG.debug("AssetServiceImpl.save() called");
         assetRepository.save(asset);
+    }
+    
+    @Override
+    public void save(List<Asset> assetList){
+        LOG.debug("AssetServiceImpl.save(list) called...");
+        assetRepository.save(assetList);
     }
     
     @Override

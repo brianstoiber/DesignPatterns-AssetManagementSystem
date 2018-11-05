@@ -31,113 +31,113 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class VendorController extends AbstractTemplateController {
 
-    private static final Logger LOG = getLogger(VendorController.class);
+	private static final Logger LOG = getLogger(VendorController.class);
 
-    @Autowired
-    private VendorService vendorService;
+	@Autowired
+	private VendorService vendorService;
 
-    @FXML
-    private TableView<Vendor> vendorTable;
+	@FXML
+	private TableView<Vendor> vendorTable;
 
-    @FXML
-    private TableColumn<Vendor, Long> colVendorId;
+	@FXML
+	private TableColumn<Vendor, Long> colVendorId;
 
-    @FXML
-    private TableColumn<Vendor, String> colName;
+	@FXML
+	private TableColumn<Vendor, String> colName;
 
-    @FXML
-    private TableColumn<Vendor, String> colPhoneNum;
+	@FXML
+	private TableColumn<Vendor, String> colPhoneNum;
 
-    @FXML
-    private TableColumn<Vendor, String> colEmail;
+	@FXML
+	private TableColumn<Vendor, String> colEmail;
 
-    @FXML
-    private TableColumn<Vendor, String> colVendorRep;
+	@FXML
+	private TableColumn<Vendor, String> colVendorRep;
 
-    @FXML
-    private Button deleteBtn;
+	@FXML
+	private Button deleteBtn;
 
-    @Autowired
-    @Lazy
-    private FXMLSceneManager sceneManager;
+	@Autowired
+	@Lazy
+	private FXMLSceneManager sceneManager;
 
-    private ObservableList<Vendor> vendorList = FXCollections.observableArrayList();
+	private ObservableList<Vendor> vendorList = FXCollections.observableArrayList();
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        LOG.info("Inside VendorController::initialize");
-        vendorTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        vendorTable.setEditable(true);
-        setTableColumnProperties();
-        populateVendors();
-    }
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		LOG.info("Inside VendorController::initialize");
+		vendorTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		vendorTable.setEditable(true);
+		setTableColumnProperties();
+		populateVendors();
+	}
 
-    @FXML
-    private void exit(ActionEvent event) {
-        Platform.exit();
-    }
+	@FXML
+	private void exit(ActionEvent event) {
+		Platform.exit();
+	}
 
-    @FXML
-    private void delete(ActionEvent event) {
-        if (vendorTable.getItems() == null || vendorTable.getItems().isEmpty()) {
-            Alert alert = AlertFactory.getAlert(Alert.AlertType.WARNING, "NO_VENDOR_TO_DELETE");
-            alert.showAndWait();
-        } else {
-            List<Vendor> selectedVendors = vendorTable.getSelectionModel().getSelectedItems();
-            if (selectedVendors == null || selectedVendors.isEmpty()) {
-                Alert alert = AlertFactory.getAlert(Alert.AlertType.INFORMATION, "SELECT_ONE_VENDOR");
-                alert.showAndWait();
-            } else {
-                Alert alert = AlertFactory.getAlert(Alert.AlertType.CONFIRMATION, "CONFIRM_DELETE_VENDOR");
-                Optional<ButtonType> action = alert.showAndWait();
+	@FXML
+	private void delete(ActionEvent event) {
+		if (vendorTable.getItems() == null || vendorTable.getItems().isEmpty()) {
+			Alert alert = AlertFactory.getAlert(Alert.AlertType.WARNING, "NO_VENDOR_TO_DELETE");
+			alert.showAndWait();
+		} else {
+			List<Vendor> selectedVendors = vendorTable.getSelectionModel().getSelectedItems();
+			if (selectedVendors == null || selectedVendors.isEmpty()) {
+				Alert alert = AlertFactory.getAlert(Alert.AlertType.INFORMATION, "SELECT_ONE_VENDOR");
+				alert.showAndWait();
+			} else {
+				Alert alert = AlertFactory.getAlert(Alert.AlertType.CONFIRMATION, "CONFIRM_DELETE_VENDOR");
+				Optional<ButtonType> action = alert.showAndWait();
 
-                if (action.get() == ButtonType.OK) {
-                    vendorService.deleteInBatch(selectedVendors);
-                    populateVendors();
-                }
-            }
-        }
+				if (action.get() == ButtonType.OK) {
+					vendorService.deleteInBatch(selectedVendors);
+					populateVendors();
+				}
+			}
+		}
 
-    }
-    
-    @FXML
-    private void handleEditCommitEvent(TableColumn.CellEditEvent<Vendor, String> event){
-        String inputFxId = ((TableColumn)event.getSource()).getId();
-        LOG.info("Event trigerred from : " + inputFxId);
-        Vendor vendor = event.getRowValue();
-        switch(inputFxId){
-            case "colName":
-                vendor.setName(event.getNewValue());
-                break;
-            case "colPhoneNum":
-                vendor.setPhoneNumber(event.getNewValue());
-                break;
-            case "colEmail":
-                vendor.setEmail(event.getNewValue());
-                break;
-            case "colVendorRep":
-                vendor.setVendorRep(event.getNewValue());
-        }
-        vendorService.save(vendor);
-        
-    }
+	}
 
-    private void setTableColumnProperties() {
-        colVendorId.setCellValueFactory(new PropertyValueFactory<>("vendorID"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colName.setCellFactory(TextFieldTableCell.forTableColumn());
-        colPhoneNum.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-        colPhoneNum.setCellFactory(TextFieldTableCell.forTableColumn());
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
-        colVendorRep.setCellValueFactory(new PropertyValueFactory<>("vendorRep"));
-        colVendorRep.setCellFactory(TextFieldTableCell.forTableColumn());
-    }
+	@FXML
+	private void handleEditCommitEvent(TableColumn.CellEditEvent<Vendor, String> event) {
+		String inputFxId = ((TableColumn) event.getSource()).getId();
+		LOG.info("Event trigerred from : " + inputFxId);
+		Vendor vendor = event.getRowValue();
+		switch (inputFxId) {
+		case "colName":
+			vendor.setName(event.getNewValue());
+			break;
+		case "colPhoneNum":
+			vendor.setPhoneNumber(event.getNewValue());
+			break;
+		case "colEmail":
+			vendor.setEmail(event.getNewValue());
+			break;
+		case "colVendorRep":
+			vendor.setVendorRep(event.getNewValue());
+		}
+		vendorService.save(vendor);
 
-    private void populateVendors() {
-        vendorList.clear();
-        vendorList.addAll(vendorService.getAll());
-        vendorTable.setItems(vendorList);
-    }
+	}
+
+	private void setTableColumnProperties() {
+		colVendorId.setCellValueFactory(new PropertyValueFactory<>("vendorID"));
+		colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		colName.setCellFactory(TextFieldTableCell.forTableColumn());
+		colPhoneNum.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+		colPhoneNum.setCellFactory(TextFieldTableCell.forTableColumn());
+		colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
+		colVendorRep.setCellValueFactory(new PropertyValueFactory<>("vendorRep"));
+		colVendorRep.setCellFactory(TextFieldTableCell.forTableColumn());
+	}
+
+	private void populateVendors() {
+		vendorList.clear();
+		vendorList.addAll(vendorService.getAll());
+		vendorTable.setItems(vendorList);
+	}
 
 }
